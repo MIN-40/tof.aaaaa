@@ -159,7 +159,7 @@ function cartQty(){return cart.reduce((s,x)=>s+x.qty,0)}
 function addCart(name,price){const item=cart.find(x=>x.name===name);if(item)item.qty++;else cart.push({name,price,qty:1});$('cartCount').textContent=cartQty();renderCart();showToast(tr('toast'))}
 function showToast(text){$('toast').textContent=text;$('toast').classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>$('toast').classList.remove('show'),1500)}
 function removeCart(index){cart.splice(index,1);$('cartCount').textContent=cartQty();renderCart()}
-function clearCart(){cart=[];$('cartCount').textContent=0;renderCart();$('cart').classList.remove('open')}
+function clearCart(){cart=[];$('cartCount').textContent=0;renderCart()}
 function renderCart(){$('cartItems').innerHTML=cart.map((x,i)=>`<div class="cartItem"><span>${x.name} × ${x.qty}</span><b>${won(x.price*x.qty)}</b><button class="remove" onclick="removeCart(${i})">${tr('remove')}</button></div>`).join('')||`<p style="color:#777">${tr('emptyCart')}</p>`;$('cartTotal').textContent='Total '+won(cart.reduce((s,x)=>s+x.price*x.qty,0));$('checkoutBtn').disabled=cart.length===0}
 function checkout(){if(!cart.length)return;$('orderModal').classList.add('open');$('buyerName').focus()}
 async function makeOrderId(){const d=new Date();const pad=n=>String(n).padStart(2,'0');return `TOF-${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`}
