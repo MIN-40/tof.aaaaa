@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tof-aaaaa.netlify.app/sitemap.xml
+Sitemap: https://min-40.github.io/tof.aaaaa/sitemap.xml
